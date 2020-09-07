@@ -22,8 +22,9 @@ Window::Window(int width, int height)
 		std::cout << "Failed to create GLFW window" << std::endl;
 		glfwTerminate();
 	}
-	glfwMakeContextCurrent(window);
 
+	glfwMakeContextCurrent(window);
+	
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	{
 		std::cout << "Failed to initialize GLAD" << std::endl;
@@ -44,11 +45,11 @@ Window::~Window()
 
 void Window::render()
 {
-	while (true)
+	while (windows.size() > 0)
 	{
 		for (std::vector<Window *>::iterator x = windows.begin(); x != windows.end(); ++x)
 		{
-
+			glfwMakeContextCurrent((*x)->window);
 			if (!glfwWindowShouldClose((*x)->window))
 			{
 				//(*x)->processInput((*x)->window);
