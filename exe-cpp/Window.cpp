@@ -24,7 +24,7 @@ Window::Window(int width, int height)
 	}
 
 	glfwMakeContextCurrent(window);
-	
+
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	{
 		std::cout << "Failed to initialize GLAD" << std::endl;
@@ -33,6 +33,7 @@ Window::Window(int width, int height)
 	glViewport(0, 0, width, height);
 
 	glfwSetFramebufferSizeCallback(window, Window::framebuffer_size_callback);
+	glfwSetKeyCallback(window, key_callback);
 
 	context = new Context();
 	windows.push_back(this);
@@ -77,4 +78,9 @@ void Window::processInput(GLFWwindow *window)
 {
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
+}
+
+void Window::key_callback(GLFWwindow *window, int key, int scancode, int action, int mods)
+{
+	std::cout << "Window: " << window << "key: " << key << std::endl;
 }

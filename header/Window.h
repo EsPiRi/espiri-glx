@@ -17,6 +17,7 @@ public:
 	static void render();
 	static void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 	void processInput(GLFWwindow *window);
+	static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 };
 
 #endif
